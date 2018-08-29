@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class that stores information on accounts
@@ -21,7 +19,6 @@ import java.util.logging.Logger;
 public class AccountLookup {
     
     private ArrayList<Account> accounts;
-    private String fileName;
     
     /**
      * Constructor of an AccountLookup object with data from the specified file
@@ -34,13 +31,23 @@ public class AccountLookup {
         
         try {
             Scanner infile = new Scanner(new File(fileName));
+            String output = "";
             while (infile.hasNextLine()) {
                 String accountNumber = infile.nextLine().trim();
                 Account newAccount = new Account(accountNumber);
-                System.out.println(newAccount.getAccountNumber());
+                boolean isValid = newAccount.validate();
+                String validity = "";
+                if (isValid) {
+                    validity = "VALID";
+                } else {
+                    validity = "NOT VALID";
+                }
+                this.accounts.add(newAccount);
+                // TODO: new lines/formatting
+                output = output + newAccount.getAccountNumber() + ": " + validity + " ";
             }
             infile.close();
-            return "Try loop";
+            return output;
                
         } catch (FileNotFoundException ex) {
             return "No such file: " + fileName;
