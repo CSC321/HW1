@@ -6,8 +6,10 @@
 package my.creditcardverification;
 
 /**
- *
+ * Class that handles the Credit Card Verification UI
+ * 
  * @author kdb05506
+ * @version August 2018
  */
 public class CreditCardVerificationUI extends javax.swing.JFrame {
 
@@ -132,21 +134,47 @@ public class CreditCardVerificationUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   
+    /**
+    * Event listener to close the frame when the exit button is clicked
+    * 
+    * @param evt 
+    */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
+    /**
+     * Event listener to remove all text from the frame when the clear button is clicked
+     * 
+     * @param evt 
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jTextField1.setText("");
         jTextPane1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Event listener to run credit card verification when the verify button is clicked
+     * 
+     * @param evt 
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String str = jTextField1.getText();
-        jTextPane1.setText(str);
+        AccountLookup lookup = new AccountLookup();
+        String output = lookup.accountLookup(str);
+        jTextPane1.setText(output);
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
+    /**
+     * Accessor method to return the file name in the text field
+     * 
+     * @return file name
+     */
+    public String getFile() {
+        return jTextField1.getText();
+    }
+    
     /**
      * @param args the command line arguments
      */
