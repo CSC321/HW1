@@ -40,7 +40,7 @@ public class AccountLookup {
                 }
                 // Add Account object to the accounts ArrayList
                 this.accounts.add(newAccount);
-                output = output + newAccount.getAccountNumber() + " " + validity + "\n ";
+                output = output + newAccount.getAccountNumber() + " " + validity + "\n";
             }
             infile.close();
             return output;    
