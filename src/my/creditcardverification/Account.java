@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package my.creditcardverification;
 
 /**
  * Class that stores account numbers
  * 
- * @author kdb05506
+ * @author Kikki Beltz, Zalak Pandya
  * @version August 2018
  */
 public class Account {
     
-    private String accountNumber;
+    private final String accountNumber;
     
     /**
      * Constructor for objects of class Account
@@ -34,41 +29,42 @@ public class Account {
     }
     
     /**
-     * Mutator method that uses the Luhn formula to determine if a credit card number is valid
+     * Method that uses the Luhn formula to determine if a credit card number is valid
      * 
-     * @param accountNumber
-     * @return whether or not the account number is valid
+     * @return boolean that indicates whether or not the account number is valid
      */
     public boolean validate() {
-        // TODO: Strip spaces
+        // Initialize counter and luhn variables
         int counter = 1;
         int luhnValue = 0;
+        // Starts at the end of the account number and moves backward
         for (int i=this.accountNumber.length()-1; i>=0; i--) {
             char c = this.accountNumber.charAt(i);
+            // If the character at the current index is a digit, get the numberic value
             if (Character.isDigit(c)) {
                int j = Character.getNumericValue(c); 
+               // Double every other number, starting with the second number from the right (counter%2==0)
                if (counter%2==0) {
                    j = 2*j;
+                   // If a number has two digits, add them together
                    if (String.valueOf(j).length()>1) {
                        j = j%10 + j/10;
                    }
                } 
+               // Add the value of the current digit to the luhn value
                luhnValue = luhnValue+j;
+            // If the current character is a space, decrement the counter to keep the index accurate and don't add to the luhn value
+            } else if (String.valueOf(c).equals(" ")) {
+                counter--;
+            // If the current character is not a digit or a space, return false
             } else {
                 return false;
             }
             counter++;
         }
-        // TODO: Check if last digit of luhn value is 0, return true/false as applicable
-        // TODO: Remove print lines
-        System.out.println(luhnValue);
         String validityCheck = String.valueOf(luhnValue);
         char d = validityCheck.charAt(validityCheck.length()-1);
-        System.out.println(d);
-        if (Character.getNumericValue(d)==0) {
-            return true;
-        } else {
-            return false;
-        }
+        // if the last digit is 0, return true, else return false
+        return Character.getNumericValue(d)==0;
     }
 }

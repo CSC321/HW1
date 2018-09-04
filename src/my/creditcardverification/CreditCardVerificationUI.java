@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package my.creditcardverification;
 
 /**
  * Class that handles the Credit Card Verification UI
  * 
- * @author kdb05506
+ * @author Kikki Beltz, Zalak Pandya
  * @version August 2018
  */
 public class CreditCardVerificationUI extends javax.swing.JFrame {

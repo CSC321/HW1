@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package my.creditcardverification;
 
 import java.io.File;
@@ -13,7 +8,7 @@ import java.util.Scanner;
 /**
  * Class that stores information on accounts
  * 
- * @author kdb05506
+ * @author Kikki Beltz, Zalak Pandya
  * @version August 2018
  */
 public class AccountLookup {
@@ -34,21 +29,21 @@ public class AccountLookup {
             String output = "";
             while (infile.hasNextLine()) {
                 String accountNumber = infile.nextLine().trim();
+                // Create new Account object
                 Account newAccount = new Account(accountNumber);
                 boolean isValid = newAccount.validate();
-                String validity = "";
+                String validity;
                 if (isValid) {
                     validity = "VALID";
                 } else {
-                    validity = "NOT VALID";
+                    validity = "INVALID";
                 }
+                // Add Account object to the accounts ArrayList
                 this.accounts.add(newAccount);
-                // TODO: new lines/formatting
-                output = output + newAccount.getAccountNumber() + ": " + validity + " ";
+                output = output + newAccount.getAccountNumber() + " " + validity + "\n ";
             }
             infile.close();
-            return output;
-               
+            return output;    
         } catch (FileNotFoundException ex) {
             return "No such file: " + fileName;
         }
