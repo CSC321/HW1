@@ -62,9 +62,7 @@ public class Account {
             }
             counter++;
         }
-        String validityCheck = String.valueOf(luhnValue);
-        char d = validityCheck.charAt(validityCheck.length()-1);
         // if the last digit is 0, return true, else return false
-        return Character.getNumericValue(d)==0;
+        return luhnValue%10==0;
     }
 }

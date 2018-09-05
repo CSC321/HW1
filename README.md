@@ -1,3 +1,3 @@
-# HW1
+# HW1 part 1
 
 For the first part of this assignment, you are to write a Java program that reads in a series of digit sequences from a file whose name is entered by the user. Your program must identify whether each is a valid credit card sequence, i.e., whether it is of the correct format according to the Luhn Formula. Your program should display each sequence on a line, followed by its classification: either VALID or INVALID. Note: there will be one digit sequence per line, and there may be spaces within the sequence (which are ignored with respect to the Luhn Formula). Any sequence that contains a character other than a digit or space is considered invalid.
